@@ -1,0 +1,38 @@
+:root {
+  font-size: 24px;
+  color: #fff;
+}
+@media screen and (max-width: 425px) {
+  .app-container {
+    display: grid;
+    grid-template-rows: 30% 70%;
+  }
+
+  .main-bg {
+    background: url(./images/bg-main-mobile.png);
+    position: relative;
+  }
+
+  .main-form {
+    display: block;
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .app-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 40% 60%;
+  }
+  .main-bg {
+    background: url(./images/bg-main-desktop.png);
+    position: relative;
+    max-width: 484px;
+  }
+
+  .main-form {
+    display: block;
+    position: relative;
+  }
+}
