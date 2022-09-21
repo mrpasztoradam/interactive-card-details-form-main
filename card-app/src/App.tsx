@@ -2,7 +2,7 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import './App.css'
 import CreditCard from './components/CreditCard'
-import { CreditCardData, ICreditCardData } from './components/CreditCardData'
+import { ICreditCardData } from './components/CreditCardData'
 
 type Inputs = {
   name: string
@@ -56,9 +56,14 @@ function App() {
             <div>
               <label>CARDHOLDER NAME</label>
               <input
-                defaultValue="test"
-                {...register('name')}
+                {...register('name', {
+                  required: true,
+                })}
+                placeholder="e.g. Jane Appleseed"
               />
+              {errors.number && (
+                <span className="fielderror">Required field!</span>
+              )}
             </div>
             <div>
               <label>CARD NUMBER</label>
@@ -68,9 +73,14 @@ function App() {
                   required: true,
                   pattern: /[0-9]{16}/,
                 })}
+                placeholder="e.g. 1234567812345678"
               />
               {/* errors will return when field validation fails  */}
-              {errors.number && <span>This field is required</span>}
+              {errors.number && (
+                <span className="fielderror">
+                  Required field! Please enter exactly 16 numbers!
+                </span>
+              )}
             </div>
             <div>
               <div>
@@ -80,17 +90,27 @@ function App() {
                     required: true,
                     pattern: /[0-9]{2}/,
                   })}
+                  placeholder="MM"
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.expiry?.month && <span>This field is required</span>}
+                {errors.expiry?.month && (
+                  <span className="fielderror">
+                    Required field! Please enter exactly 2 numbers!
+                  </span>
+                )}
                 <input
                   {...register('expiry.year', {
                     required: true,
                     pattern: /[0-9]{2}/,
                   })}
+                  placeholder="YY"
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.expiry?.year && <span>This field is required</span>}
+                {errors.expiry?.year && (
+                  <span className="fielderror">
+                    Required field! Please enter exactly 2 numbers!
+                  </span>
+                )}
               </div>
               <div>
                 <label>CVV</label>
@@ -99,9 +119,13 @@ function App() {
                     required: true,
                     pattern: /[0-9]{3}/,
                   })}
+                  placeholder="e.g. 123"
                 />
-                {/* errors will return when field validation fails  */}
-                {errors.cvv && <span>This field is required</span>}
+                {errors.cvv && (
+                  <span className="fielderror">
+                    Required field! Please enter exactly 3 numbers!
+                  </span>
+                )}
               </div>
             </div>
 
